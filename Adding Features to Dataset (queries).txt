@@ -1,0 +1,413 @@
+CREATE DATABASE heart_failure_db;
+USE heart_failure_db;
+
+CREATE TABLE heart_data (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    Age INT,
+    Sex VARCHAR(5),
+    ChestPainType VARCHAR(10),
+    RestingBP INT,
+    Cholesterol INT,
+    FastingBS INT,
+    RestingECG VARCHAR(20),
+    MaxHR INT,
+    ExerciseAngina VARCHAR(5),
+    Oldpeak FLOAT,
+    ST_Slope VARCHAR(10),
+    HeartDisease INT
+);
+
+1. Left side mein "heart_failure_db" par right-click karo
+           ↓
+2. "Table Data Import Wizard" select karo
+           ↓
+3. "Browse" karke apni heart.csv file select karo
+           ↓
+4. "Next" dabao
+           ↓
+5. "Use existing table" select karo → heart_failure_db.heart_data
+           ↓
+6. "Next" dabao
+           ↓
+7. Column mapping check karo (automatically match ho jata hai)
+           ↓
+8. "Next" → "Next" → "Finish"
+
+SELECT * FROM heart_data LIMIT 5;
+################ For Testation ###################
+
+art full query · SQL
+-- =============================================
+-- HEART FAILURE DB - FULL SETUP QUERY
+-- =============================================
+ 
+USE heart_failure_db;
+ 
+-- =============================================
+-- STEP 1: 200 Dummy Rows Insert Karo
+-- =============================================
+INSERT INTO heart_data (Age, Sex, ChestPainType, RestingBP, Cholesterol, FastingBS, RestingECG, MaxHR, ExerciseAngina, Oldpeak, ST_Slope, HeartDisease)
+VALUES
+(68,'M','ATA',174,140,0,'Normal',95,'Y',3.4,'Down',0),
+(65,'F','ATA',83,47,0,'Normal',189,'Y',2.3,'Down',1),
+(42,'F','ASY',183,3,0,'LVH',168,'N',-0.2,'Up',1),
+(34,'M','TA',92,183,1,'LVH',127,'Y',3.8,'Down',0),
+(52,'M','ASY',186,321,1,'LVH',109,'Y',-2.2,'Up',1),
+(33,'M','ATA',128,142,1,'LVH',153,'Y',0.7,'Up',1),
+(72,'M','NAP',148,373,0,'Normal',178,'N',-0.2,'Down',0),
+(71,'F','ATA',109,16,1,'ST',128,'Y',-0.7,'Down',1),
+(41,'F','TA',193,329,1,'Normal',127,'Y',-0.4,'Down',1),
+(75,'F','TA',126,112,0,'LVH',186,'Y',4.1,'Up',0),
+(68,'M','TA',156,32,1,'ST',179,'N',5.9,'Up',0),
+(71,'F','ASY',94,150,1,'Normal',176,'Y',5.8,'Down',1),
+(60,'M','ATA',191,320,1,'LVH',189,'Y',-1.3,'Up',0),
+(66,'F','TA',82,57,1,'ST',121,'Y',-0.5,'Down',0),
+(33,'F','ATA',177,272,0,'Normal',181,'Y',-0.3,'Down',1),
+(41,'M','ASY',131,343,1,'ST',192,'N',-1.5,'Up',0),
+(49,'M','NAP',155,112,0,'Normal',75,'Y',-2.0,'Up',1),
+(32,'M','ASY',165,248,0,'LVH',93,'N',-0.5,'Flat',1),
+(40,'M','ATA',164,220,1,'ST',165,'N',5.0,'Up',0),
+(31,'F','ASY',182,55,0,'Normal',108,'N',-1.4,'Up',1),
+(57,'M','ATA',136,281,0,'Normal',198,'Y',5.9,'Up',0),
+(54,'F','TA',107,205,0,'Normal',157,'Y',6.1,'Flat',1),
+(46,'F','TA',99,97,1,'Normal',74,'Y',4.0,'Up',0),
+(65,'F','NAP',87,260,0,'Normal',77,'Y',3.3,'Up',1),
+(35,'M','ATA',159,41,1,'LVH',193,'N',5.6,'Up',1),
+(43,'F','TA',96,343,1,'ST',140,'Y',-2.5,'Down',0),
+(32,'M','ASY',96,178,0,'Normal',154,'N',-1.2,'Down',1),
+(67,'M','ASY',199,339,0,'Normal',127,'Y',5.2,'Down',0),
+(45,'F','NAP',171,175,0,'LVH',127,'N',-0.4,'Up',0),
+(68,'F','ASY',85,1,1,'Normal',127,'Y',3.9,'Down',1),
+(63,'M','ATA',89,353,0,'LVH',69,'N',2.5,'Up',1),
+(36,'M','ASY',126,20,1,'Normal',123,'Y',0.5,'Down',1),
+(67,'M','NAP',190,83,0,'ST',66,'Y',3.9,'Flat',1),
+(70,'M','ASY',100,359,0,'ST',69,'N',-0.6,'Flat',1),
+(47,'M','NAP',83,337,0,'ST',144,'N',5.0,'Flat',1),
+(69,'F','ASY',200,14,0,'ST',105,'N',-2.3,'Down',1),
+(50,'F','TA',157,261,0,'ST',108,'N',-2.2,'Flat',0),
+(61,'M','ASY',135,35,1,'LVH',140,'Y',3.7,'Flat',1),
+(70,'F','ASY',131,356,1,'LVH',92,'Y',1.1,'Flat',0),
+(67,'F','TA',150,0,1,'ST',113,'N',4.3,'Down',1),
+(57,'F','TA',166,109,1,'LVH',103,'Y',-0.1,'Down',1),
+(33,'M','ASY',108,101,0,'Normal',71,'Y',6.1,'Down',0),
+(57,'F','NAP',171,356,1,'ST',162,'Y',-1.3,'Down',0),
+(76,'M','TA',108,90,1,'Normal',202,'Y',5.5,'Up',1),
+(36,'F','ASY',176,226,1,'LVH',174,'Y',3.9,'Flat',1),
+(44,'M','ASY',178,398,1,'LVH',121,'N',1.3,'Down',1),
+(43,'F','ASY',120,276,0,'Normal',98,'Y',0.8,'Up',0),
+(32,'F','TA',122,277,1,'ST',75,'Y',4.7,'Flat',0),
+(76,'F','TA',80,180,1,'ST',167,'Y',1.7,'Flat',1),
+(59,'M','TA',123,342,1,'LVH',102,'N',5.5,'Down',0),
+(53,'M','ATA',162,219,0,'ST',106,'Y',-0.3,'Flat',0),
+(57,'F','ASY',177,194,1,'ST',124,'Y',1.5,'Down',0),
+(50,'M','ATA',179,333,0,'Normal',123,'Y',4.8,'Down',0),
+(43,'M','TA',165,58,0,'ST',125,'N',-1.1,'Down',0),
+(77,'M','ASY',93,296,0,'ST',156,'N',5.7,'Up',0),
+(65,'M','ATA',169,395,1,'LVH',90,'Y',0.5,'Flat',1),
+(32,'F','ATA',188,215,1,'Normal',170,'N',3.0,'Flat',0),
+(55,'M','ASY',158,275,1,'ST',171,'N',0.2,'Up',0),
+(45,'F','NAP',176,237,1,'ST',67,'N',4.9,'Up',1),
+(41,'F','ASY',123,143,1,'LVH',62,'Y',-1.8,'Down',1),
+(59,'M','TA',162,364,1,'ST',64,'Y',-0.0,'Flat',0),
+(47,'F','TA',150,271,1,'ST',200,'N',0.5,'Flat',1),
+(47,'F','NAP',95,369,0,'ST',90,'Y',-0.9,'Down',1),
+(45,'F','ATA',186,99,1,'Normal',152,'Y',0.1,'Down',0),
+(45,'M','ATA',150,149,0,'LVH',185,'Y',5.1,'Down',1),
+(58,'F','TA',123,94,0,'ST',182,'Y',4.6,'Flat',1),
+(32,'M','NAP',99,288,1,'Normal',123,'Y',2.3,'Flat',0),
+(77,'F','TA',196,226,1,'LVH',169,'N',2.4,'Up',0),
+(76,'M','NAP',113,338,0,'Normal',121,'Y',2.3,'Up',0),
+(54,'F','TA',117,16,0,'ST',132,'N',-2.0,'Up',1),
+(68,'M','TA',94,278,0,'LVH',98,'N',4.7,'Up',0),
+(38,'F','ASY',136,63,1,'LVH',137,'N',5.7,'Down',1),
+(56,'M','ATA',193,221,1,'LVH',124,'Y',-1.8,'Down',0),
+(76,'F','ATA',177,387,0,'ST',192,'N',5.5,'Up',1),
+(68,'F','ATA',140,178,1,'ST',142,'Y',4.9,'Flat',1),
+(72,'F','ASY',164,205,0,'ST',82,'N',-0.4,'Up',1),
+(60,'M','TA',132,27,0,'LVH',152,'N',2.9,'Up',0),
+(45,'M','ASY',136,357,1,'Normal',67,'Y',3.6,'Flat',0),
+(63,'F','ATA',108,58,1,'Normal',99,'N',5.6,'Flat',1),
+(54,'F','TA',111,233,0,'ST',108,'Y',5.0,'Flat',1),
+(49,'F','ATA',116,371,1,'LVH',185,'Y',1.3,'Flat',1),
+(49,'F','TA',199,164,0,'LVH',121,'N',-0.5,'Flat',0),
+(48,'F','TA',129,339,0,'ST',69,'Y',1.8,'Down',1),
+(34,'F','ATA',147,233,0,'LVH',96,'N',5.1,'Up',0),
+(58,'F','ASY',159,354,1,'LVH',80,'N',4.9,'Down',1),
+(48,'F','ATA',159,35,0,'LVH',133,'Y',4.0,'Flat',0),
+(76,'M','TA',101,355,1,'Normal',71,'N',4.4,'Flat',1),
+(51,'F','NAP',111,271,1,'LVH',106,'Y',-1.1,'Down',1),
+(67,'M','TA',196,298,0,'Normal',178,'N',1.4,'Down',0),
+(57,'F','NAP',89,226,1,'LVH',136,'N',3.5,'Flat',1),
+(40,'F','TA',93,121,1,'LVH',151,'N',6.1,'Flat',0),
+(70,'F','ASY',81,289,0,'LVH',187,'N',4.2,'Up',1),
+(42,'M','ASY',166,386,0,'LVH',84,'Y',0.1,'Flat',0),
+(65,'F','NAP',91,151,1,'LVH',166,'Y',-0.8,'Down',1),
+(61,'F','NAP',112,246,1,'LVH',146,'Y',1.5,'Up',0),
+(76,'M','TA',188,285,1,'Normal',161,'Y',-0.3,'Up',1),
+(51,'F','TA',185,326,1,'Normal',119,'N',-2.4,'Down',1),
+(67,'M','ATA',161,237,1,'LVH',164,'Y',-1.4,'Up',1),
+(59,'M','ATA',110,275,0,'ST',176,'N',3.3,'Down',1),
+(65,'M','TA',163,50,1,'LVH',164,'N',-2.3,'Flat',0),
+(56,'F','NAP',189,185,0,'LVH',154,'N',-2.1,'Flat',0),
+(35,'F','ATA',164,108,0,'Normal',145,'Y',6.1,'Down',0),
+(32,'M','NAP',184,119,1,'Normal',60,'N',5.0,'Up',0),
+(62,'F','NAP',94,338,0,'Normal',63,'N',4.4,'Up',1),
+(29,'M','ASY',86,64,1,'LVH',89,'Y',1.6,'Flat',0),
+(56,'M','ATA',173,337,1,'ST',67,'Y',6.2,'Flat',1),
+(71,'M','TA',171,227,0,'Normal',142,'Y',-2.0,'Flat',1),
+(52,'F','TA',144,309,1,'Normal',89,'Y',1.2,'Up',1),
+(49,'F','TA',133,373,0,'ST',169,'N',3.3,'Flat',0),
+(71,'F','ATA',91,43,0,'ST',84,'N',4.5,'Down',0),
+(65,'F','ATA',132,181,1,'LVH',73,'N',2.7,'Flat',0),
+(64,'M','NAP',164,246,0,'Normal',149,'N',-1.6,'Flat',0),
+(55,'M','ASY',83,92,1,'LVH',139,'N',0.5,'Up',0),
+(64,'F','ATA',98,379,0,'Normal',195,'Y',0.7,'Flat',1),
+(38,'F','ASY',172,166,0,'Normal',99,'Y',4.0,'Up',0),
+(45,'F','TA',142,310,1,'ST',129,'Y',4.0,'Up',1),
+(55,'M','ASY',166,347,1,'LVH',138,'Y',-0.7,'Down',0),
+(28,'M','ASY',107,392,0,'ST',134,'N',-1.5,'Flat',1),
+(39,'M','TA',148,360,0,'LVH',150,'Y',0.9,'Down',0),
+(55,'M','TA',197,39,1,'LVH',169,'N',3.6,'Flat',1),
+(35,'F','ATA',121,87,1,'LVH',152,'Y',1.2,'Up',0),
+(55,'F','ATA',130,158,1,'Normal',145,'Y',-1.9,'Down',0),
+(61,'M','ASY',124,372,0,'Normal',86,'Y',-0.3,'Up',0),
+(76,'M','NAP',178,321,1,'ST',174,'N',5.0,'Down',1),
+(37,'F','ATA',140,226,1,'ST',74,'N',1.9,'Flat',1),
+(56,'M','ATA',127,146,0,'LVH',83,'N',1.5,'Down',0),
+(56,'M','ASY',157,243,0,'Normal',175,'Y',4.5,'Flat',0),
+(60,'M','ATA',111,362,1,'ST',194,'Y',0.6,'Flat',1),
+(54,'F','ATA',181,323,1,'Normal',144,'Y',2.3,'Flat',1),
+(44,'M','ASY',90,298,0,'ST',139,'N',-1.5,'Down',0),
+(47,'F','ASY',184,65,0,'LVH',168,'N',-2.4,'Flat',0),
+(41,'F','TA',104,115,0,'Normal',79,'N',4.8,'Up',0),
+(70,'F','NAP',156,192,0,'Normal',106,'Y',3.7,'Up',1),
+(51,'M','TA',158,145,1,'Normal',196,'Y',0.1,'Flat',0),
+(51,'F','TA',178,144,1,'LVH',195,'N',5.9,'Up',0),
+(44,'M','TA',191,190,0,'LVH',192,'Y',-0.1,'Up',1),
+(56,'M','TA',91,113,1,'ST',66,'N',-2.1,'Down',1),
+(43,'F','ATA',127,114,0,'ST',85,'N',4.4,'Up',0),
+(46,'F','NAP',177,361,1,'ST',61,'Y',-2.4,'Up',0),
+(63,'F','ATA',179,147,0,'ST',91,'Y',-0.5,'Down',1),
+(32,'M','TA',156,274,0,'LVH',191,'Y',3.7,'Flat',1),
+(28,'F','NAP',153,213,0,'LVH',81,'N',-2.0,'Down',0),
+(52,'F','ATA',161,198,1,'ST',64,'N',4.3,'Flat',0),
+(74,'M','ASY',97,22,1,'LVH',146,'Y',4.7,'Down',1),
+(72,'F','NAP',183,69,0,'LVH',177,'Y',-0.0,'Up',0),
+(30,'F','ASY',145,203,1,'ST',69,'Y',-0.1,'Up',1),
+(45,'M','ASY',135,204,1,'ST',146,'Y',1.8,'Flat',1),
+(61,'F','ATA',173,217,0,'ST',106,'N',0.2,'Up',1),
+(70,'F','ASY',137,308,1,'Normal',173,'N',1.3,'Down',1),
+(67,'F','ASY',161,29,0,'LVH',163,'N',1.9,'Down',0),
+(29,'M','TA',84,64,0,'Normal',153,'N',0.8,'Down',0),
+(66,'M','TA',127,190,1,'Normal',95,'N',0.9,'Down',1),
+(43,'M','ATA',174,95,1,'LVH',159,'Y',-0.3,'Flat',1),
+(41,'F','TA',105,62,0,'Normal',175,'Y',5.3,'Flat',0),
+(71,'F','ASY',170,33,1,'ST',100,'Y',4.4,'Down',0),
+(35,'M','NAP',110,252,0,'ST',201,'N',1.5,'Down',0),
+(67,'M','ATA',119,203,1,'LVH',165,'N',4.6,'Up',0),
+(48,'M','TA',139,348,1,'Normal',201,'Y',4.2,'Up',1),
+(60,'M','ATA',146,78,1,'Normal',101,'N',5.6,'Up',1),
+(61,'F','ATA',112,100,1,'Normal',137,'Y',1.8,'Up',0),
+(38,'F','ATA',185,14,0,'Normal',127,'Y',4.1,'Flat',0),
+(59,'F','ASY',141,125,1,'ST',176,'Y',3.5,'Up',1),
+(54,'F','TA',106,174,0,'ST',141,'N',6.0,'Up',1),
+(60,'M','ASY',110,238,0,'ST',175,'Y',-1.4,'Up',1),
+(52,'F','NAP',190,81,1,'LVH',140,'Y',4.1,'Flat',1),
+(59,'F','TA',82,46,1,'LVH',177,'Y',-0.7,'Flat',0),
+(31,'F','TA',156,334,1,'ST',197,'Y',4.9,'Flat',0),
+(44,'F','TA',126,23,1,'Normal',109,'N',2.3,'Up',1),
+(60,'F','ASY',185,319,0,'Normal',84,'N',0.7,'Flat',1),
+(76,'M','NAP',157,260,1,'LVH',70,'Y',-2.3,'Down',1),
+(58,'F','NAP',157,263,0,'ST',141,'Y',0.9,'Down',1),
+(65,'F','TA',170,288,1,'ST',64,'N',0.3,'Up',1),
+(65,'F','ATA',156,242,1,'LVH',118,'Y',2.5,'Up',1),
+(37,'M','ATA',153,358,0,'Normal',64,'N',0.2,'Up',1),
+(72,'M','TA',144,396,1,'LVH',75,'Y',2.0,'Down',1),
+(70,'F','TA',120,88,1,'LVH',147,'N',3.3,'Down',1),
+(67,'F','NAP',111,142,1,'Normal',136,'N',3.6,'Down',1),
+(48,'F','ASY',151,369,1,'ST',91,'N',5.3,'Flat',1),
+(77,'M','ASY',85,147,0,'ST',173,'N',4.0,'Up',0),
+(62,'F','ASY',97,55,0,'Normal',72,'Y',3.0,'Up',0),
+(54,'F','TA',92,348,0,'Normal',200,'Y',1.0,'Flat',1),
+(69,'M','ASY',121,146,0,'Normal',119,'Y',5.4,'Up',1),
+(39,'M','TA',180,253,0,'LVH',134,'Y',-2.5,'Down',0),
+(49,'F','TA',162,278,1,'Normal',189,'N',-0.2,'Up',1),
+(38,'F','ASY',171,95,0,'LVH',146,'N',2.4,'Up',0),
+(67,'F','TA',145,167,0,'ST',84,'Y',6.0,'Flat',1),
+(43,'M','ASY',129,120,1,'ST',144,'N',2.5,'Down',0),
+(44,'F','NAP',87,341,0,'ST',138,'Y',1.0,'Down',1),
+(72,'M','ASY',127,314,0,'Normal',94,'N',-1.3,'Down',1),
+(54,'F','NAP',177,126,0,'LVH',174,'N',-1.9,'Down',0),
+(31,'M','NAP',101,167,1,'Normal',112,'N',-1.8,'Down',1),
+(31,'F','NAP',145,212,1,'LVH',74,'N',3.3,'Flat',0),
+(53,'F','ATA',175,111,0,'Normal',168,'N',3.6,'Down',0),
+(32,'F','ATA',116,209,0,'Normal',167,'N',6.1,'Flat',1),
+(52,'F','ATA',167,338,0,'LVH',149,'Y',-1.0,'Down',1),
+(61,'M','NAP',186,1,0,'ST',178,'N',2.1,'Up',0),
+(57,'F','NAP',115,96,0,'Normal',167,'Y',-0.5,'Up',0),
+(66,'M','TA',156,344,0,'Normal',71,'N',1.3,'Down',0),
+(76,'M','NAP',144,148,0,'LVH',141,'N',-0.5,'Up',0),
+(54,'F','ASY',87,285,0,'LVH',169,'N',-2.2,'Flat',1);
+ 
+-- =============================================
+-- STEP 2: Naye Feature Columns Add Karo
+-- =============================================
+ALTER TABLE heart_data
+ADD COLUMN AgeGroup VARCHAR(20),
+ADD COLUMN BP_Category VARCHAR(20),
+ADD COLUMN Cholesterol_Category VARCHAR(20),
+ADD COLUMN MaxHR_Category VARCHAR(20),
+ADD COLUMN RiskScore INT,
+ADD COLUMN RiskLevel VARCHAR(10);
+ 
+-- =============================================
+-- STEP 3: Features Ki Values Fill Karo
+-- =============================================
+ 
+-- AgeGroup
+UPDATE heart_data
+SET AgeGroup = CASE
+    WHEN Age < 40 THEN 'Young'
+    WHEN Age < 55 THEN 'Middle-Aged'
+    ELSE 'Senior'
+END;
+ 
+-- BP_Category
+UPDATE heart_data
+SET BP_Category = CASE
+    WHEN RestingBP < 120 THEN 'Normal'
+    WHEN RestingBP < 130 THEN 'Elevated'
+    WHEN RestingBP < 140 THEN 'High-Stage1'
+    ELSE 'High-Stage2'
+END;
+ 
+-- Cholesterol_Category
+UPDATE heart_data
+SET Cholesterol_Category = CASE
+    WHEN Cholesterol = 0   THEN 'Unknown'
+    WHEN Cholesterol < 200 THEN 'Healthy'
+    WHEN Cholesterol < 240 THEN 'Borderline'
+    ELSE 'High'
+END;
+ 
+-- MaxHR_Category
+UPDATE heart_data
+SET MaxHR_Category = CASE
+    WHEN MaxHR < 100 THEN 'Low'
+    WHEN MaxHR < 150 THEN 'Moderate'
+    ELSE 'High'
+END;
+ 
+-- RiskScore
+UPDATE heart_data
+SET RiskScore =
+    (CASE WHEN Age > 55 THEN 1 ELSE 0 END) +
+    (CASE WHEN RestingBP >= 140 THEN 1 ELSE 0 END) +
+    (CASE WHEN Cholesterol > 240 THEN 1 ELSE 0 END) +
+    (CASE WHEN FastingBS = 1 THEN 1 ELSE 0 END) +
+    (CASE WHEN ExerciseAngina = 'Y' THEN 1 ELSE 0 END);
+ 
+-- RiskLevel
+UPDATE heart_data
+SET RiskLevel = CASE
+    WHEN RiskScore <= 1 THEN 'Low'
+    WHEN RiskScore <= 3 THEN 'Medium'
+    ELSE 'High'
+END;
+ 
+-- =============================================
+-- STEP 4: Verify Karo
+-- =============================================
+SELECT COUNT(*) AS Total_Rows FROM heart_data;
+ 
+SELECT Age, AgeGroup, RestingBP, BP_Category,
+       Cholesterol, Cholesterol_Category,
+       RiskScore, RiskLevel
+FROM heart_data
+LIMIT 10;
+
+SET SQL_SAFE_UPDATES = 0;
+
+SET SQL_SAFE_UPDATES = 0;
+########## For Error Handling###########
+
+-- AgeGroup
+UPDATE heart_data
+SET AgeGroup = CASE
+    WHEN Age < 40 THEN 'Young'
+    WHEN Age < 55 THEN 'Middle-Aged'
+    ELSE 'Senior'
+END;
+
+-- BP_Category
+UPDATE heart_data
+SET BP_Category = CASE
+    WHEN RestingBP < 120 THEN 'Normal'
+    WHEN RestingBP < 130 THEN 'Elevated'
+    WHEN RestingBP < 140 THEN 'High-Stage1'
+    ELSE 'High-Stage2'
+END;
+
+-- Cholesterol_Category
+UPDATE heart_data
+SET Cholesterol_Category = CASE
+    WHEN Cholesterol = 0   THEN 'Unknown'
+    WHEN Cholesterol < 200 THEN 'Healthy'
+    WHEN Cholesterol < 240 THEN 'Borderline'
+    ELSE 'High'
+END;
+
+-- MaxHR_Category
+UPDATE heart_data
+SET MaxHR_Category = CASE
+    WHEN MaxHR < 100 THEN 'Low'
+    WHEN MaxHR < 150 THEN 'Moderate'
+    ELSE 'High'
+END;
+
+-- RiskScore
+UPDATE heart_data
+SET RiskScore =
+    (CASE WHEN Age > 55 THEN 1 ELSE 0 END) +
+    (CASE WHEN RestingBP >= 140 THEN 1 ELSE 0 END) +
+    (CASE WHEN Cholesterol > 240 THEN 1 ELSE 0 END) +
+    (CASE WHEN FastingBS = 1 THEN 1 ELSE 0 END) +
+    (CASE WHEN ExerciseAngina = 'Y' THEN 1 ELSE 0 END);
+
+-- RiskLevel
+UPDATE heart_data
+SET RiskLevel = CASE
+    WHEN RiskScore <= 1 THEN 'Low'
+    WHEN RiskScore <= 3 THEN 'Medium'
+    ELSE 'High'
+END;
+
+-- Verify
+SELECT COUNT(*) AS Total_Rows FROM heart_data;
+
+SELECT Age, AgeGroup, RestingBP, BP_Category,
+       Cholesterol, Cholesterol_Category,
+       RiskScore, RiskLevel
+FROM heart_data
+LIMIT 10;
+
+SELECT * FROM heart_data;
+########## To Check Whole Dataset############
+
+Export/Import: 📤 📥
+########### Result Grid ke sath ###############
+
+1. Click karo pehle icon par (Export/Import ke baad wala)
+        ↓
+2. File path choose karo (jahan save karni hai)
+        ↓
+3. File type: CSV select karo
+        ↓
+4. Export click karo
+
+SELECT COUNT(*) AS Total_Rows FROM heart_data;
+############# To Verify Rows Number ##############
+
+⚡ 🔧 🔍  |  Limit to 1000 rows  ▼  |  ⭐ 🔖
+############# For Don't Limit #############
+
